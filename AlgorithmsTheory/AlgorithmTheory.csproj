@@ -62,7 +62,7 @@
   <ItemGroup>
     <Compile Include="Coder.cs" />
     <Compile Include="CreatingDelegates\CompositionCreator.cs" />
-    <Compile Include="CreatingDelegates\DelegateHelper.cs" />
+    <Compile Include="CreatingDelegates\CurryingCreator.cs" />
     <Compile Include="Delegates.cs" />
     <Compile Include="CreatingDelegates\ExpressionsHelper.cs" />
     <Compile Include="CreatingDelegates\ChangeParametersVisitor.cs" />

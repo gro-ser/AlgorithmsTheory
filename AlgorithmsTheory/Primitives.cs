@@ -1,81 +1,206 @@
 ﻿using AlgorithmTheory.CreatingDelegates;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using num = System.Numerics.BigInteger;
 
 namespace AlgorithmTheory
 {
 #pragma warning disable IDE1006 // Стили именования
+    /// <summary>
+    /// Declaring initial functions and operators.
+    /// </summary>
     public static class Primitives
     {
         /// <summary>
-        /// Нульфункция
+        /// Zero function.
         /// </summary>
         /// <param name="x">parameter</param>
         /// <returns>zero</returns>
         public static Num Zero(Num x) => Num.Zero;
         /// <summary>
-        /// Функция следования
+        /// Succession function.
         /// </summary>
         /// <param name="x">parameter</param>
         /// <returns>x+1</returns>
         public static Num Succ(Num x) => x + Num.One;
 
         /// <summary>
-        /// Zero-function
+        /// Zero function.
         /// </summary>
         public static Fun1 Z { get; } = Zero;
         /// <summary>
-        /// Succession-function
+        /// Succession function.
         /// </summary>
         public static Fun1 S { get; } = Succ;
 
         #region Projectors
+        /// <summary>
+        /// Projector that takes 1 arguments and returns the 1st argument.
+        /// </summary>
         public static Fun1 P_1_1 { get; } = Projectors.Get1Out1;
+
+        /// <summary>
+        /// Projector that takes 2 arguments and returns the 1st argument.
+        /// </summary>
         public static Fun2 P_2_1 { get; } = Projectors.Get2Out1;
+        /// <summary>
+        /// Projector that takes 2 arguments and returns the 2nd argument.
+        /// </summary>
         public static Fun2 P_2_2 { get; } = Projectors.Get2Out2;
+
+        /// <summary>
+        /// Projector that takes 3 arguments and returns the 1st argument.
+        /// </summary>
         public static Fun3 P_3_1 { get; } = Projectors.Get3Out1;
+        /// <summary>
+        /// Projector that takes 3 arguments and returns the 2nd argument.
+        /// </summary>
         public static Fun3 P_3_2 { get; } = Projectors.Get3Out2;
+        /// <summary>
+        /// Projector that takes 3 arguments and returns the 3rd argument.
+        /// </summary>
         public static Fun3 P_3_3 { get; } = Projectors.Get3Out3;
+
+        /// <summary>
+        /// Projector that takes 4 arguments and returns the 1st argument.
+        /// </summary>
         public static Fun4 P_4_1 { get; } = Projectors.Get4Out1;
+        /// <summary>
+        /// Projector that takes 4 arguments and returns the 2nd argument.
+        /// </summary>
         public static Fun4 P_4_2 { get; } = Projectors.Get4Out2;
+        /// <summary>
+        /// Projector that takes 4 arguments and returns the 3rd argument.
+        /// </summary>
         public static Fun4 P_4_3 { get; } = Projectors.Get4Out3;
+        /// <summary>
+        /// Projector that takes 4 arguments and returns the 4th argument.
+        /// </summary>
         public static Fun4 P_4_4 { get; } = Projectors.Get4Out4;
+
+        /// <summary>
+        /// Projector that takes 5 arguments and returns the 1st argument.
+        /// </summary>
         public static Fun5 P_5_1 { get; } = Projectors.Get5Out1;
+        /// <summary>
+        /// Projector that takes 5 arguments and returns the 2nd argument.
+        /// </summary>
         public static Fun5 P_5_2 { get; } = Projectors.Get5Out2;
+        /// <summary>
+        /// Projector that takes 5 arguments and returns the 3rd argument.
+        /// </summary>
         public static Fun5 P_5_3 { get; } = Projectors.Get5Out3;
+        /// <summary>
+        /// Projector that takes 5 arguments and returns the 4th argument.
+        /// </summary>
         public static Fun5 P_5_4 { get; } = Projectors.Get5Out4;
+        /// <summary>
+        /// Projector that takes 5 arguments and returns the 5th argument.
+        /// </summary>
         public static Fun5 P_5_5 { get; } = Projectors.Get5Out5;
+
+        /// <summary>
+        /// Projector that takes 6 arguments and returns the 1st argument.
+        /// </summary>
         public static Fun6 P_6_1 { get; } = Projectors.Get6Out1;
+        /// <summary>
+        /// Projector that takes 6 arguments and returns the 2nd argument.
+        /// </summary>
         public static Fun6 P_6_2 { get; } = Projectors.Get6Out2;
+        /// <summary>
+        /// Projector that takes 6 arguments and returns the 3rd argument.
+        /// </summary>
         public static Fun6 P_6_3 { get; } = Projectors.Get6Out3;
+        /// <summary>
+        /// Projector that takes 6 arguments and returns the 4th argument.
+        /// </summary>
         public static Fun6 P_6_4 { get; } = Projectors.Get6Out4;
+        /// <summary>
+        /// Projector that takes 6 arguments and returns the 5th argument.
+        /// </summary>
         public static Fun6 P_6_5 { get; } = Projectors.Get6Out5;
+        /// <summary>
+        /// Projector that takes 6 arguments and returns the 6th argument.
+        /// </summary>
         public static Fun6 P_6_6 { get; } = Projectors.Get6Out6;
+
+        /// <summary>
+        /// Projector that takes 7 arguments and returns the 1st argument.
+        /// </summary>
         public static Fun7 P_7_1 { get; } = Projectors.Get7Out1;
+        /// <summary>
+        /// Projector that takes 7 arguments and returns the 2nd argument.
+        /// </summary>
         public static Fun7 P_7_2 { get; } = Projectors.Get7Out2;
+        /// <summary>
+        /// Projector that takes 7 arguments and returns the 3rd argument.
+        /// </summary>
         public static Fun7 P_7_3 { get; } = Projectors.Get7Out3;
+        /// <summary>
+        /// Projector that takes 7 arguments and returns the 4th argument.
+        /// </summary>
         public static Fun7 P_7_4 { get; } = Projectors.Get7Out4;
+        /// <summary>
+        /// Projector that takes 7 arguments and returns the 5th argument.
+        /// </summary>
         public static Fun7 P_7_5 { get; } = Projectors.Get7Out5;
+        /// <summary>
+        /// Projector that takes 7 arguments and returns the 6th argument.
+        /// </summary>
         public static Fun7 P_7_6 { get; } = Projectors.Get7Out6;
+        /// <summary>
+        /// Projector that takes 7 arguments and returns the 7th argument.
+        /// </summary>
         public static Fun7 P_7_7 { get; } = Projectors.Get7Out7;
+
+        /// <summary>
+        /// Projector that takes 8 arguments and returns the 1st argument.
+        /// </summary>
         public static Fun8 P_8_1 { get; } = Projectors.Get8Out1;
+        /// <summary>
+        /// Projector that takes 8 arguments and returns the 2nd argument.
+        /// </summary>
         public static Fun8 P_8_2 { get; } = Projectors.Get8Out2;
+        /// <summary>
+        /// Projector that takes 8 arguments and returns the 3rd argument.
+        /// </summary>
         public static Fun8 P_8_3 { get; } = Projectors.Get8Out3;
+        /// <summary>
+        /// Projector that takes 8 arguments and returns the 4th argument.
+        /// </summary>
         public static Fun8 P_8_4 { get; } = Projectors.Get8Out4;
+        /// <summary>
+        /// Projector that takes 8 arguments and returns the 5th argument.
+        /// </summary>
         public static Fun8 P_8_5 { get; } = Projectors.Get8Out5;
+        /// <summary>
+        /// Projector that takes 8 arguments and returns the 6th argument.
+        /// </summary>
         public static Fun8 P_8_6 { get; } = Projectors.Get8Out6;
+        /// <summary>
+        /// Projector that takes 8 arguments and returns the 7th argument.
+        /// </summary>
         public static Fun8 P_8_7 { get; } = Projectors.Get8Out7;
+        /// <summary>
+        /// Projector that takes 8 arguments and returns the 8th argument.
+        /// </summary>
         public static Fun8 P_8_8 { get; } = Projectors.Get8Out8;
         #endregion
 
+        /// <summary>
+        /// The function of prime numbers.
+        /// </summary>
         public static Fun1 P { get; } = PrimeNumbers.GetPrimeNumber;
 
+        /// <summary>
+        /// Encode the sequence of numbers.
+        /// </summary>
+        /// <param name="numbers">The sequence of numbersto encode.</param>
+        /// <returns>Encoded number.</returns>
         public static Num enc(params Num[] numbers) => Coder.Encode(numbers);
 
+        /// <summary>
+        /// Decode the number into sequence of numbers.
+        /// </summary>
+        /// <param name="num">Number to decode.</param>
+        /// <returns>Decoded sequence.</returns>
         public static Num[] dec(Num num) => Coder.Decode(num);
 
         #region comp
@@ -236,25 +361,26 @@ namespace AlgorithmTheory
 
         #region prim
 
-        private static readonly RecursionCreator<Num> recursion = new RecursionCreator<Num>(Num.Zero, Num.One);
+        private static readonly RecursionCreator<Num> recursion
+            = new RecursionCreator<Num>(Num.Zero, Num.One);
 
         public static Fun2 prim(Fun1 fun1, Fun3 fun3)
-            => recursion.PrimitiveRecursion<Fun2>(fun1, fun3);
+            => recursion.OptimizedRecursion<Fun2>(fun1, fun3);
 
         public static Fun3 prim(Fun2 fun2, Fun4 fun4)
-            => recursion.PrimitiveRecursion<Fun3>(fun2, fun4);
+            => recursion.OptimizedRecursion<Fun3>(fun2, fun4);
 
         public static Fun4 prim(Fun3 fun3, Fun5 fun5)
-            => recursion.PrimitiveRecursion<Fun4>(fun3, fun5);
+            => recursion.OptimizedRecursion<Fun4>(fun3, fun5);
 
         public static Fun5 prim(Fun4 fun4, Fun6 fun6)
-            => recursion.PrimitiveRecursion<Fun5>(fun4, fun6);
+            => recursion.OptimizedRecursion<Fun5>(fun4, fun6);
 
         public static Fun6 prim(Fun5 fun5, Fun7 fun7)
-            => recursion.PrimitiveRecursion<Fun6>(fun5, fun7);
+            => recursion.OptimizedRecursion<Fun6>(fun5, fun7);
 
         public static Fun7 prim(Fun6 fun6, Fun8 fun8)
-            => recursion.PrimitiveRecursion<Fun7>(fun6, fun8);
+            => recursion.OptimizedRecursion<Fun7>(fun6, fun8);
 
         #endregion
 

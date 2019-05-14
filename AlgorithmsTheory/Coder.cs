@@ -70,7 +70,7 @@ namespace AlgorithmTheory
         }
 
         /// <summary>
-        /// Decode <paramref name="number"/> into a sequence of numbers.
+        /// Decode the <paramref name="number"/> into a sequence of numbers.
         /// </summary>
         /// <param name="number">Number to decode.</param>
         /// <returns>Decoded sequence of numbers.</returns>
@@ -88,7 +88,7 @@ namespace AlgorithmTheory
             while (!number.IsOne)
             {
                 var exp = Exp(ref number, PrimeNumbers.GetPrimeNumber(index++));
-                if (0 == exp)
+                if (exp == 0)
                     throw new ArgumentException("Number is not an encoded value.", nameof(number));
                 list.Add(exp - Num.One);
             }

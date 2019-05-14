@@ -11,23 +11,24 @@ namespace AlgorithmTheory.CreatingDelegates
     {
         internal static List<ParameterInfo> SafeParameterList(MethodInfo info)
         {
-            // get parameterd from method info
+            // get parameters from method info
             List<ParameterInfo> result = new List<ParameterInfo>(info.GetParameters());
             if (result.Count > 0
-                // if first parameter is Closure
+                // if the first parameter is Closure
                 && result[0].ParameterType == typeof(Closure)
                 // and its name doesn't exist
                 && result[0].Name == null)
-                // then that method compiled by Expressions
+                // then that method was compiled using Expressions
                 // and it is necessary to remove this parameter
                 result.RemoveAt(0);
+
             return result;
         }
 
         internal static Expression CreateCall(Delegate @delegate, IEnumerable<Expression> arguments)
         {
             object target = @delegate.Target;
-            // if delegate created with Expressions
+            // if delegate was created using Expressions
             if (target is Closure)
                 // |> delegate.Invoke(arguments)
                 return Invoke(Constant(@delegate), arguments);

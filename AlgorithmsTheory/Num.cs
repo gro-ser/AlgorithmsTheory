@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Numerics;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AlgorithmTheory
 {
@@ -14,9 +11,9 @@ namespace AlgorithmTheory
         private BigInteger self;
 
         #region readonly constants
-        readonly public static Num Zero = new Num() { self = BigInteger.Zero };
-        readonly public static Num One = new Num() { self = BigInteger.One };
-        readonly public static Num Two = new Num() { self = 2 };
+        public static Num Zero { get; } = new Num() { self = 0 };
+        public static Num One { get; } = new Num() { self = 1 };
+        public static Num Two { get; } = new Num() { self = 2 };
         #endregion
 
 #if DEBUG
@@ -65,8 +62,8 @@ namespace AlgorithmTheory
         #endregion
 
         #region unary
-        static public Num operator ++(Num left) => new Num { self = left.self + BigInteger.One };
-        static public Num operator --(Num left) => new Num(left.self - BigInteger.One);
+        static public Num operator ++(Num value) => new Num { self = value.self + BigInteger.One };
+        static public Num operator --(Num value) => new Num(value.self - BigInteger.One);
         #endregion
 
         #region logic
@@ -79,8 +76,8 @@ namespace AlgorithmTheory
         #endregion
 
         #region converting
-        static public implicit operator Num(int value) => new Num(value);
         static public explicit operator int(Num value) => (int)value.self;
+        static public implicit operator Num(int value) => new Num(value);
         static public implicit operator Num(uint value) => new Num(value);
         static public implicit operator Num(ulong value) => new Num(value);
         #endregion
@@ -147,13 +144,14 @@ namespace AlgorithmTheory
         public override string ToString()
         {
             return self.ToString();
-            return "0"; // TODO!
+            return "0"; // TODO It run to another dimension on realy big numbers
         }
 
-        #region Interfaces
+        #region Interfaces implementation
 
         #region override from Object
         public override bool Equals(object obj) => obj is Num && Equals((Num)obj);
+
         public override int GetHashCode() => self.GetHashCode();
         #endregion
 

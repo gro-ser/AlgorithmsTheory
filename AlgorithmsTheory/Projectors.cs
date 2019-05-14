@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Linq.Expressions;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace AlgorithmTheory
 {
@@ -257,12 +257,15 @@ namespace AlgorithmTheory
         /// </exception>
         public static Delegate CreateProjector(int input, int output)
         {
-            if (output > input) throw new
-                    ArgumentException("Output index can't be greater then argument count.", nameof(output));
-            if (output < 1) throw new
-                    ArgumentException("Output index can't be less than one.", nameof(output));
-            if (input < 1) throw new
-                    ArgumentException("Argmunent count must be positive.", nameof(input));
+            if (output > input)
+                throw new ArgumentException(
+                    "Output index can't be greater then argument count.", nameof(output));
+            if (output < 1)
+                throw new ArgumentException(
+                    "Output index can't be less than one.", nameof(output));
+            if (input < 1)
+                throw new ArgumentException(
+                    "Argmunent count must be positive.", nameof(input));
 
             int hash = Hash(input, output);
             if (projectors.ContainsKey(hash))

@@ -69,10 +69,7 @@ namespace AlgorithmTheory.CreatingDelegates
             ParameterExpression[] parameters = new ParameterExpression[parameterCount];
             for (int i = 0; i < parameterCount; i++)
                 parameters[i] = Parameter(parameterTypes[i].ParameterType);
-
-            // if param0 is Closure
-            if (parameterCount > 0 && parameters[0].Type == typeof(int)) { }
-
+            
             // create delegate call expressions
             Expression[] innerCalls = new Expression[delegateCount];
             for (int i = 0; i < delegateCount; i++)
@@ -82,7 +79,7 @@ namespace AlgorithmTheory.CreatingDelegates
             Expression externalCall = CreateCall(external, innerCalls);
 
             LambdaExpression lambda;
-            if (delegateType is null)
+            if (delegateType == null)
                 // if `delegateType` is null that method create it automatically
                 lambda = Lambda(externalCall, parameters);
             else

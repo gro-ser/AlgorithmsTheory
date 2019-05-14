@@ -18,6 +18,7 @@ using fun2 = System.Func<double, double, double>;
 using exp = System.Linq.Expressions.Expression<System.Func<int, int>>;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Reflection.Emit;
 //using static AlgorithmsTheory.CreatingDelegates.DelegateHelper;
 
 
@@ -55,7 +56,7 @@ namespace Worker
         {
             Num f(Num x, Num y)
             {
-                if (x == Num.Zero)
+                if (x.IsZero)
                     return h(y);
                 x -= Num.One;
                 return g(x, y, f(x, y));
@@ -108,18 +109,32 @@ namespace Worker
 
         static Delegate partial(Delegate d, int i, object o)
         {
-            return AlgorithmTheory.CreatingDelegates.DelegateHelper.LockParameter(d, o, i, null);
+            return AlgorithmTheory.CreatingDelegates.CurryingCreator.LockParameter(d, o, i, null);
         }
 
         static void Main()
         {
-            Console.WriteLine(Assembly.GetCallingAssembly().FullName);
-            Expression<Func<int, Func<int, int>>> tst = x => z => x + z;
-            print(tst);
-            tst = (Expression<Func<int, Func<int, int>>>)
-                ChangeParametersVisitor.ChangeParameters(
-                    tst, (((LambdaExpression)tst.Body).Parameters[0], Parameter(typeof(int), "y")));
-            print(tst);
+            var a = ((Fun1)H).Method;
+            var b = comp(z => z, z => z).Method;
+            Console.WriteLine(a.GetType());
+            Console.WriteLine(b.GetType());
+            foreach (var prop in typeof(MethodBase).GetProperties((BindingFlags)(-1)))
+            {
+                Console.Write("{0,20}:",prop.Name);
+
+                try
+                {Console.Write("{0,20},", prop.GetValue(a));}
+                catch (Exception e)
+                {Console.Write("[{0}]", new string(e.Message.Take(18).ToArray()));}
+
+                try
+                {Console.Write("{0,20}", prop.GetValue(b));}
+                catch (Exception e)
+                {Console.Write("[{0}]", new string(e.Message.Take(18).ToArray()));}
+
+                Console.WriteLine();
+            }
+
             /*
             var fac = prim(x => Num.One, (a, b, c) => (a + Num.One) * c);
             var fac_gt = prim_gt(x => Num.One, (a, b, c) => (a + Num.One) * c);

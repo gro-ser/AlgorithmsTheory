@@ -112,12 +112,13 @@ namespace AlgorithmTheory.CreatingDelegates
             succ = Add(counter, one);
         }
 
+
         public LambdaExpression PrimitiveRecursionExpression(
             Delegate ifTrue,
             Delegate ifFalse,
             Type delegateType)
         {
-            if (pred is null) throw new InvalidOperationException("Pred() function is null.");
+            if (pred is null) throw new InvalidOperationException("Predecessor function is null.");
             if (ifTrue is null) throw new ArgumentNullException(nameof(ifTrue));
             if (ifFalse is null) throw new ArgumentNullException(nameof(ifFalse));
 
@@ -198,12 +199,13 @@ namespace AlgorithmTheory.CreatingDelegates
             return lambda.Compile();
         }
 
+
         public LambdaExpression OptimizedRecursionExpression(
             Delegate ifTrue,
             Delegate ifFalse,
             Type delegateType)
         {
-            if (succ is null) throw new InvalidOperationException("Succ() function is null.");
+            if (succ is null) throw new InvalidOperationException("Successor function is null.");
             if (ifTrue is null) throw new ArgumentNullException(nameof(ifTrue));
             if (ifFalse is null) throw new ArgumentNullException(nameof(ifFalse));
 
@@ -212,7 +214,7 @@ namespace AlgorithmTheory.CreatingDelegates
                 flist = SafeParameterList(ifFalse.Method);
 
             int argc = flist.Count - 1;
-            if (tlist.Count + 1 != argc) throw new ArgumentException("Invalid arguments count.");
+            if (tlist.Count + 1 != argc) throw new ArgumentException("Invalid argument count.");
 
             ParameterExpression[] args = new ParameterExpression[argc];
             args[0] = counter;
@@ -254,12 +256,36 @@ namespace AlgorithmTheory.CreatingDelegates
 
             LambdaExpression lambda;
 
-            if (null == delegateType)
+            if (delegateType == null)
                 lambda = Lambda(body, args);
             else
                 lambda = Lambda(delegateType, body, args);
 
             return lambda;
+        }
+
+
+        public Expression<TDelegate> OptimizedRecursionExpression<TDelegate>(Delegate ifTrue, Delegate ifFalse)
+#if DEBUG
+            where TDelegate : Delegate
+#endif
+        {
+            return (Expression<TDelegate>)OptimizedRecursionExpression(ifTrue, ifFalse, typeof(TDelegate));
+        }
+
+        public Delegate OptimizedRecursion(Delegate ifTrue, Delegate ifFalse, Type delegateType)
+        {
+            var lambda = OptimizedRecursionExpression(ifTrue, ifFalse, delegateType);
+            return lambda.Compile();
+        }
+
+        public TDelegate OptimizedRecursion<TDelegate>(Delegate ifTrue, Delegate ifFalse)
+#if DEBUG
+            where TDelegate : Delegate
+#endif
+        {
+            var lambda = OptimizedRecursionExpression<TDelegate>(ifTrue, ifFalse);
+            return lambda.Compile();
         }
     }
 }
