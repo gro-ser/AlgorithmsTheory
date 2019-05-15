@@ -114,36 +114,11 @@ namespace Worker
 
         static void Main()
         {
-            var a = ((Fun1)H).Method;
-            var b = comp(z => z, z => z).Method;
-            Console.WriteLine(a.GetType());
-            Console.WriteLine(b.GetType());
-            foreach (var prop in typeof(MethodBase).GetProperties((BindingFlags)(-1)))
+            for (int i = 250; i < 350; i++)
             {
-                Console.Write("{0,20}:",prop.Name);
-
-                try
-                {Console.Write("{0,20},", prop.GetValue(a));}
-                catch (Exception e)
-                {Console.Write("[{0}]", new string(e.Message.Take(18).ToArray()));}
-
-                try
-                {Console.Write("{0,20}", prop.GetValue(b));}
-                catch (Exception e)
-                {Console.Write("[{0}]", new string(e.Message.Take(18).ToArray()));}
-
-                Console.WriteLine();
+                Console.WriteLine("10^{0} = {1}", i, Num.Pow(10, i).ToString());
             }
 
-            /*
-            var fac = prim(x => Num.One, (a, b, c) => (a + Num.One) * c);
-            var fac_gt = prim_gt(x => Num.One, (a, b, c) => (a + Num.One) * c);
-
-            for (var i = Num.Zero; i < 6u; ++i)
-            {
-                Console.WriteLine("i:{0,2} | {1,5} | {2,5}", i, fac(i, Num.One), fac_gt(i, Num.One));
-            }
-            */
             Console.ReadLine();
         }
 
@@ -211,11 +186,7 @@ namespace Worker
             sw.Restart();
             var T1 = tmp.ToString();
             Console.WriteLine("ToString()  :: {0}", sw.Elapsed);
-            sw.Restart();
-            var T2 = tmp.ToStringF();
-            Console.WriteLine("ToStringF() :: {0}", sw.Elapsed);
             Console.WriteLine("T1:<{0}>", T1);
-            Console.WriteLine("T2:<{0}>", T2);
             Console.ReadLine();
         }
 
